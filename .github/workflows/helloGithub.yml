@@ -1,16 +1,26 @@
-name: Hello Github
+name: Hello World
+
 on:
   push:
     branches: [ "main" ]
   workflow_dispatch:
 
+env:
+   # set this to your preferred AWS region, e.g. ca-central-1
+  AWS_REGION: ca-central-1
+  
+permissions:
+  contents: read
+
 jobs:
   build:
-  name: HelloWorld
-  runs-on: ubuntu-latest
-  steps:
-  - uses: actions/checkout@v2
-  - name: Write a multi-line message
-    run: |
-      echo This demo file shows a 
-      echo very basic and easy-to-understand workflow.
+    name: Build
+    runs-on: ubuntu-latest
+    environment: production
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      run: |
+        echo This demo file shows a 
+        echo very basic and easy-to-understand workflow.
